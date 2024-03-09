@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 class SettingsPage extends StatefulWidget {
+  const SettingsPage({super.key});
+
   @override
   _SettingsPageState createState() => _SettingsPageState();
 }
@@ -12,23 +14,23 @@ class _SettingsPageState extends State<SettingsPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Settings'),
+        title: const Text('Settings'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
+            const Text(
               'Temperature Unit:',
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
             Row(
               children: [
                 Expanded(
                   child: ListTile(
-                    title: Text('Celsius'),
+                    title: const Text('Celsius'),
                     leading: Radio(
                       value: true,
                       groupValue: _useCelsius,
@@ -42,7 +44,7 @@ class _SettingsPageState extends State<SettingsPage> {
                 ),
                 Expanded(
                   child: ListTile(
-                    title: Text('Fahrenheit'),
+                    title: const Text('Fahrenheit'),
                     leading: Radio(
                       value: false,
                       groupValue: _useCelsius,
@@ -56,12 +58,12 @@ class _SettingsPageState extends State<SettingsPage> {
                 ),
               ],
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             ElevatedButton(
               onPressed: () {
                 Navigator.pop(context);
               },
-              child: Text('Save'),
+              child: const Text('Save'),
             ),
           ],
         ),

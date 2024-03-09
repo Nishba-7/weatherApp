@@ -1,33 +1,35 @@
-
-
 import 'package:flutter/cupertino.dart';
 import 'package:weather_app/models/weather.dart';
 
-class WeatherViewModel extends ChangeNotifier{
-  final  repository ;
-  late  Weather weatherData = Weather(location: '', temperature: 0, Condition: '');
+import '../repositories/weather_repositories.dart';
+
+class WeatherViewModel extends ChangeNotifier {
+  final WeatherRepository repository;
+  Weather weatherData = Weather(location: '', temperature: 0,Condition: '');
   bool isLoading = false;
   String errorMessage = '';
 
   WeatherViewModel({required this.repository});
 
-  Future<void> fetchWeatherData() async {
+  Future<void> fetchWeatherData(double latitude , double longitude) async {
     isLoading = true;
     notifyListeners();
 
-    try{
-      final data = await repository .fetchWeatherData();
+    try {
+      final data = await repository.fetchWeatherData(latitude,longitude);
       weatherData = Weather(
-        location:'${data['name']},${data['sys']['country']}',
-        Condition :data ['weather'][0]['main'],
-        temperature: data ['main']['temp'],
+        location: '${data['name']}, ${data['sys']['country']}',
+        Condition:data['weather'][0]['main'],
+        temperature: data['main']['temp'].toDouble(),
       );
       errorMessage = '';
-    }catch (e){
+    } catch (e) {
       print('Error fetching weather data: $e');
-      errorMessage = 'Error on fetching weather data';
+      errorMessage = 'Error fetching weather data:$e';
     }
-    isLoading =true;
+
+    isLoading = false;
     notifyListeners();
   }
 }
+

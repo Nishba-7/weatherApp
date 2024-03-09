@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 
 class Weather{
   final String location;
@@ -7,5 +6,5 @@ class Weather{
 
   Weather({required this.location,
     required this.Condition,
-    required this.temperature});
+    required this.temperature, });
 }
